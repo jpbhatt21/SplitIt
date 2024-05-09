@@ -11,7 +11,10 @@ return <></>};
 function Home(props) {
     redr=()=>{
         console.log("Redirected to Login")
-        props.navigation.navigate("Login")
+        props.navigation.reset({
+            index: 0,
+            routes: [{ name: 'Login' }],
+          });
     }
     useEffect(()=>{   
         if (token==null)

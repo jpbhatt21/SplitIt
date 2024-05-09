@@ -5,6 +5,8 @@ import GridLines from './grid';
 import { io } from 'socket.io-client';
 import AsyncStorage from '@react-native-async-storage/async-storage';  
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import { Alert } from 'react-native';
+import {KeyboardAvoidingView} from 'react-native';
 let storeUSR=async (token,uname,uid)=>{
     let data={token:token,uname:uname,uid:uid}
     try {
@@ -35,7 +37,7 @@ function Login(props) {
                 props.navigation.navigate("Home")
             }
             else{
-                alert("Invalid Username or Password")
+                Alert.alert("Oops!","Invalid Username or Password")
             }
         })
     },[])
@@ -44,11 +46,11 @@ function Login(props) {
     setUser(uname)
     let pass=password.trim()
     if (uname.length<4 || pass.length<4){
-        alert("Username and Password must be atleast 4 characters long")
+        Alert.alert("Oops!","Username and Password must be atleast 4 characters long")
         return
     }
     else if (uname.includes(" ") || pass.includes(" ")){
-        alert("Username and Password must not contain spaces")
+        Alert.alert("Oops!","Username and Password must not contain spaces")
         return
     }
     else{
@@ -57,17 +59,21 @@ function Login(props) {
     }
     return (
         <>
-        <View className="w-full h-full absolute justify-center items-center" style={{backgroundColor:styl.bg}}  >
             {token==null?
-        <View className="w-full h-full absolute justify-center items-center z-1"  >
-            <Text className="text-2xl font-bold" style={{color:styl.t1}}>Welcome to Split/It</Text>
-            <TextInput autoCapitalize='none' className="w-64 h-10 mt-6 p-2 rounded-lg " style={{backgroundColor:styl.inp,color:styl.t1}} onChangeText={(val)=>{setUsername(val)}} onSubmitEditing={()=>ref.current.focus()} enterKeyHint='next' blurOnSubmit={false} placeholder="Username"/>
-            <TextInput autoCapitalize='none' className="w-64 h-10 mt-2 p-2 rounded-lg" secureTextEntry={true} onChangeText={(val)=>{setPassword(val)}} style={{backgroundColor:styl.inp,color:styl.t1}} onSubmitEditing={()=>{submit();}}  ref={ref} placeholder="Password"/>
-            <Pressable className=" mt-6 py-2 px-3 rounded-lg " style={{backgroundColor:colpal.colorful.green}}  onPress={()=>{console.log(username," ",password);submit();}}><Text style={{color:styl.inp}}>Login</Text></Pressable>
-        </View>:<></>
-        }
-        </View>
-        </>
+        <KeyboardAvoidingView className="w-full h-full absolute justify-center items-center z-1" style={{backgroundColor:styl.bg}} behavior="padding" enabled >
+            <Text className="text-2xl font-bold" style={{color:styl.t2}}>Welcome to Split/It</Text>
+            <View className="w-64 "><Text className="text-md mt-4" style={{color:styl.t1}}>Username:</Text></View>
+            <TextInput autoCapitalize='none' className="w-64 h-10 mt-1 p-2 rounded-lg " style={{backgroundColor:styl.inp,color:styl.t1}} onChangeText={(val)=>{setUsername(val)}} onSubmitEditing={()=>ref.current.focus()} enterKeyHint='next' blurOnSubmit={false} placeholder=""/>
+            <View className="flex flex-row w-64 mt-2">
+                <Text className="text-md w-[86px] " style={{color:styl.t1}}>Password:</Text>
+                <Pressable className=" w-[170px] items-end"   onPress={()=>{props.navigation.navigate("ForgotPass")}}><Text  style={{color:colpal.frost.b3, fontSize:12}}>Forgot Password?</Text></Pressable>
+            </View>
+            <TextInput autoCapitalize='none' className="w-64 h-10 mt-1 p-2 rounded-lg" secureTextEntry={true} onChangeText={(val)=>{setPassword(val)}} style={{backgroundColor:styl.inp,color:styl.t1}} onSubmitEditing={()=>{submit();}}  ref={ref} placeholder=""/>
+            
+            <Pressable className=" mt-3 py-2 px-3 rounded-lg " style={{backgroundColor:colpal.colorful.green}}  onPress={()=>{console.log(username," ",password);submit();}}><Text style={{color:styl.inp}}>Login</Text></Pressable>
+            <Pressable className=" w-full flex flex-row justify-center items-center mt-4"   onPress={()=>{props.navigation.navigate("Register")}}><Text style={{fontSize:12}}>Don't have an account? </Text><Text  style={{color:colpal.frost.b3, fontSize:12}}>Register</Text></Pressable>
+        </KeyboardAvoidingView>:<></>
+        }</>
     );
 }
 
