@@ -19,30 +19,26 @@ What things you need to install the software and how to install them:
 
 A step by step series of examples that tell you how to get a development environment running:
 
-1. Clone the repository:
-\`\`\`sh
+# 1. Clone the repository:
 git clone https://github.com/jpbhatt21/SplitIt.git
-\`\`\`
-2. Install dependencies:
-\`\`\`sh
+
+# 2. Install dependencies:
 npm install
-# OR
+OR
 yarn install
-\`\`\`
-3. Start the Metro Server:
-\`\`\`sh
+
+# 3. Start the Metro Server:
 npm start
-# OR
+OR
 yarn start
-\`\`\`
-4. Run the app:
-\`\`\`sh
+
+# 4. Run the app:
 npm run android # for Android
 npm run ios # for iOS
-# OR
+OR
 yarn android # for Android
 yarn ios # for iOS
-\`\`\`
+
 
 
 ## Built With
