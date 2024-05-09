@@ -21,17 +21,17 @@ A step by step series of examples that tell you how to get a development environ
 
 # 1. Clone the repository:
 git clone https://github.com/jpbhatt21/SplitIt.git
----
+
 # 2. Install dependencies:
 npm install
 OR
 yarn install
----
+
 # 3. Start the Metro Server:
 npm start
 OR
 yarn start
----
+
 # 4. Run the app:
 npm run android 
 npm run ios 
