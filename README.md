@@ -26,20 +26,20 @@ git clone https://github.com/jpbhatt21/SplitIt.git
 2. Install dependencies:
 \`\`\`sh
 npm install
-# OR
+OR
 yarn install
 \`\`\`
 3. Start the Metro Server:
 \`\`\`sh
 npm start
-# OR
+OR
 yarn start
 \`\`\`
 4. Run the app:
 \`\`\`sh
 npm run android # for Android
 npm run ios # for iOS
-# OR
+OR
 yarn android # for Android
 yarn ios # for iOS
 \`\`\`
