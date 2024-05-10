@@ -34,7 +34,10 @@ function Login(props) {
                 setUid (data.data[1])
 
                 storeUSR(token,user, uid)
-                props.navigation.navigate("Home")
+                props.navigation.reset({
+                    index: 0,
+                    routes: [{ name: 'Home' }],
+                  });
             }
             else{
                 Alert.alert("Oops!","Invalid Username or Password")

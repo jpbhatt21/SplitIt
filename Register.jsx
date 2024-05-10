@@ -14,7 +14,21 @@ function Register(props) {
     const ref2=useRef()
     const ref3=useRef()
     const [emop, setEmop] = useState(0);
-
+    useEffect(() => {
+        socket.on('reg', (data) => {
+            console.log(data)
+            if (data.data[0] === "ok") {
+                Alert.alert("Success!", "Account created successfully");
+                props.navigation.reset({
+                    index: 0,
+                    routes: [{ name: 'Login' }],
+                  });
+            }
+            else {
+                Alert.alert("Oops!", data.data[0]);
+            }
+        })
+    }, [])
     const submit = () => {
         if (password !== confirmPassword) {
             Alert.alert("Oops!", "Passwords do not match");
@@ -30,6 +44,7 @@ function Register(props) {
         }
         // Emit event to server to register user
         console.log(username, email, password);
+        socket.emit('register', { name: username, email: email, pass: password });
     }
 
     return (

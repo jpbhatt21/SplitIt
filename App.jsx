@@ -26,6 +26,17 @@ let styl={}
 let user=null
 let token=null
 let uid=null
+const disp=
+<NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="ForgotPass" component={ForgotPass} />
+            <Stack.Screen name="ResetIt"  component={ResetPassword} />
+            <Stack.Screen  name="Register" component={Register} />
+          </Stack.Navigator>
+        </NavigationContainer>
+
 function setUser(u){
   user=u
 }
@@ -38,7 +49,7 @@ function setUid(u){
 let setS=()=>{}
 let getUSR=async ()=>{
     try {
-        const value = null//await AsyncStorage.getItem('tok');
+        const value = await AsyncStorage.getItem('tok');
         if (value !== null) {
             let data=JSON.parse(value)
 
@@ -47,18 +58,11 @@ let getUSR=async ()=>{
             uid=data.uid
             console.log("Token: ",token)
             socket.emit('token', {name:user,token:token})
+            setS(disp)
         }
         else{
           await new Promise((r)=>setTimeout(r,1))
-            setS(<NavigationContainer >
-              <Stack.Navigator screenOptions={{ headerShown: false}} >
-                <Stack.Screen options={{ gestureEnabled:false }} name="Home" component={Home} />
-                <Stack.Screen options={{ gestureEnabled:false }} name="Login" component={Login} />
-                <Stack.Screen name="ForgotPass" component={ForgotPass} />
-                <Stack.Screen name="Reset"  component={ResetPassword} />
-                <Stack.Screen name="Register" component={Register} />
-              </Stack.Navigator>
-            </NavigationContainer>)
+            setS(disp)
         }
     } catch (e) {
         console.log(e)
@@ -85,13 +89,7 @@ function App() {
           user=null
             alert("Session Expired")
         }
-        setS(<NavigationContainer>
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="ForgotPass" component={ForgotPass} />
-          </Stack.Navigator>
-        </NavigationContainer>)
+        setS(disp)
     })
 },[])
   styl=isDarkMode?colpal.dark:colpal.light

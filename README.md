@@ -41,7 +41,7 @@ yarn ios
 
 
 
-## Built With
+## Built Using
 
 - [React Native](https://reactnative.dev) 
 - [npm](https://www.npmjs.com/)

@@ -30,7 +30,7 @@ function ForgotPass (props) {
                 
                 console.log("OTP: ",otp1)
                 console.log("Email: ",email1)
-                props.navigation.navigate("Reset", {email:email1,otp:otp1})
+                props.navigation.navigate("ResetIt", {email:email1,otp:otp1})
             }
             else{
                 Alert.alert("Oops!","Invalid OTP")

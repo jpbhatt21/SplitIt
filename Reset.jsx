@@ -4,7 +4,7 @@ import { Text, Pressable } from 'react-native';
 import { colpal, styl } from './App';
 import { socket } from './Login';
 import { KeyboardAvoidingView } from 'react-native';
-import { otp1,email1 } from './ForgotPass';
+
 function ResetPassword(props) {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
